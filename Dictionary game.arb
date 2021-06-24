@@ -126,6 +126,13 @@ class Game < Dict_Main
         puts related[0]['words'][0]
     end
 
+    def ant_syn(word)
+        ant = get_antonyms(word)
+        syn = get_synonyms(word)
+        puts ant
+        puts syn
+    end
+
     def jumbled(str)
         s = str.split(//).sort_by { rand }.join('')
         s =~ /[A-Z]/ && s =~ /[a-z]/ ? s.capitalize : s
@@ -148,7 +155,7 @@ class Game < Dict_Main
         if @lives > 0
             word_length = @word.size
             puts "Guess the word (#{word_length})"
-            guess = gets.chomp
+            guess = gets.chomp.downcase
 
             good_guess = @word.eql?(guess)
 
@@ -175,7 +182,7 @@ class Game < Dict_Main
                     puts "Score  : #{@score}"
                     make_guess
                 when "2"
-                    puts "Select the Hint you want to use: | 1. Other Definations | 2. Examples | 3.Related Word | 4.Jumbled Word\n"
+                    puts "Select the Hint you want to use: | 1. Other Definitions | 2. Examples | 3.Related Word | 4.Jumbled Word\n"
                     @score -= 3
                     if @score < 0
                         @score = 0
@@ -233,14 +240,19 @@ puts "Enter 'S' to start"
 input= gets.chomp
 case input
 when 's', 'S'
-    puts "Enter: 1. Word Game | 2. Word of the Day"
+    puts "Enter: 1. Word Game | 2. Word of the Day | 3. Get Antonyms & Synonyms"
     choice = gets.chomp.to_i
     case choice
     when 1
         b.begin_new
     when 2
         a.word_of_the_day
+    when 3
+        word = a.get_random['word']
+        puts word
+        puts "Antonyms: #{a.get_antonyms(word)}"
+        puts "Synonyms: #{a.get_synonyms(word)}"
     end
-else 
+else
     puts "Invalid Input"
 end
