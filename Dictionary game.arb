@@ -72,7 +72,7 @@ class Dict_Main
     end
 
 
-    # A function that combines and prints all the info about a word
+    # A function that combines and prints all the details of a word
     def word_full_dict(word)
         puts "Word Definitions:"
         word_definitions(word).each do |val|
@@ -233,7 +233,7 @@ puts "Press 'S' to start"
 input = gets.chomp
 case input
 when 's', 'S'
-    puts "Enter: 1. Word Game | 2. Word of the Day | 3. Get Antonyms & Synonyms | 4. Word Definitions"
+    puts "Enter: 1. Word Game | 2. Word of the Day | 3. Get Antonyms & Synonyms | 4. Word Definitions | 5. Word examples"
     choice = gets.chomp.to_i
     case choice
     when 1
@@ -241,16 +241,26 @@ when 's', 'S'
     when 2
         a.word_of_the_day
     when 3
+        puts "Please wait---"
         word = a.get_random['word']
         puts "Word: #{word}"
         puts "Antonyms: #{a.get_antonyms(word)}"
         puts "Synonyms: #{a.get_synonyms(word)}"
     when 4
+        puts "Please wait---"
         word = a.get_random['word']
         puts "Word: #{word}"
         puts "Definitions: "
-        a.word_definitions(word).each do |val|
-            puts val["text"]
+        a.word_definitions(word).each_with_index do |val, i|
+            puts "#{i+1}--> #{ val["text"]}"
+        end
+    when 5
+        puts "Please wait---"
+        word = a.get_random['word']
+        puts "Word: #{word}"
+        puts "Word Examples:"
+        a.word_examples(word)['examples'].each_with_index do |val, i|
+            puts"#{i+1}--> #{val['text']}"
         end
     end
 else
