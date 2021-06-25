@@ -160,26 +160,17 @@ class Game < Dict_Main
             else 
                 @lives -= 1
                 puts "You have #{@lives} lives left. Try again!"
-                if @score < 0
-                    @score = 0
-                end
                 puts "Score  : #{@score}"
                 puts "Enter: 1 to Try Again | Enter: 2 for Hint | Enter: 3 to skip | Enter: 4 to Exit"
                 choice = gets.chomp
                 case choice
                 when "1"
                     @score -= 2
-                    if @score<0
-                        @score = 0
-                    end
                     puts "Score  : #{@score}"
                     make_guess
                 when "2"
                     puts "Select the Hint you want to use: | 1. Other Definitions | 2. Examples | 3.Related Word | 4.Jumbled Word\n"
                     @score -= 3
-                    if @score < 0
-                        @score = 0
-                    end
                     puts "Score  : #{@score}"
                     hint = gets.chomp
                     case hint
@@ -198,9 +189,6 @@ class Game < Dict_Main
                     end
                 when "3"
                     @score -= 4
-                    if @score < 0
-                        @score = 0
-                    end
                     puts "Score  : #{@score}"
                     begin_new
                 when "4"
