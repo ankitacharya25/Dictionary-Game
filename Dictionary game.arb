@@ -126,13 +126,6 @@ class Game < Dict_Main
         puts related[0]['words'][0]
     end
 
-    def ant_syn(word)
-        ant = get_antonyms(word)
-        syn = get_synonyms(word)
-        puts ant
-        puts syn
-    end
-
     def jumbled(str)
         s = str.split(//).sort_by { rand }.join('')
         s =~ /[A-Z]/ && s =~ /[a-z]/ ? s.capitalize : s
@@ -236,11 +229,11 @@ end
 a = Dict_Main.new
 b = Game.new
 
-puts "Enter 'S' to start"
-input= gets.chomp
+puts "Press 'S' to start"
+input = gets.chomp
 case input
 when 's', 'S'
-    puts "Enter: 1. Word Game | 2. Word of the Day | 3. Get Antonyms & Synonyms"
+    puts "Enter: 1. Word Game | 2. Word of the Day | 3. Get Antonyms & Synonyms | 4. Word Definitions"
     choice = gets.chomp.to_i
     case choice
     when 1
@@ -249,9 +242,16 @@ when 's', 'S'
         a.word_of_the_day
     when 3
         word = a.get_random['word']
-        puts word
+        puts "Word: #{word}"
         puts "Antonyms: #{a.get_antonyms(word)}"
         puts "Synonyms: #{a.get_synonyms(word)}"
+    when 4
+        word = a.get_random['word']
+        puts "Word: #{word}"
+        puts "Definitions: "
+        a.word_definitions(word).each do |val|
+            puts val["text"]
+        end
     end
 else
     puts "Invalid Input"
