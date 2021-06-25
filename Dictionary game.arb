@@ -75,15 +75,15 @@ class Dict_Main
     # A function that combines and prints all the details of a word
     def word_full_dict(word)
         puts "Word Definitions:"
-        word_definitions(word).each do |val|
-            puts val["text"]
+        word_definitions(word).each_with_index do |val, i|
+            puts "#{i+1}-->#{val["text"]}"
         end
         puts "Related Words:"
         puts "Antonyms: #{get_antonyms(word)}"
         puts "Synonyms: #{get_synonyms(word)}"
         puts "Word Examples:"
-        word_examples(word)['examples'].each do |val|
-            puts val['text']
+        word_examples(word)['examples'].each_with_index do |val, i|
+            puts "#{i+1}--> #{val['text']}"
         end
     end
 
