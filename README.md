@@ -1,6 +1,6 @@
 # Dictionary-Game 
 
-## Dictionary Tool using FourtyTwoWords words api.
+## Dictionary Tool using FourtyTwoWords words API.
 
 ### In this repository you'll find my code for a Dictionary Game, written in Ruby.
 ### You can try running the "Dictionary game.arb" file and the rest of the process with be self explanatory.
